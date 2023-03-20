@@ -47,7 +47,7 @@ namespace PeliculasAPI.Controllers
                     await actorCreacionDTO.Foto.CopyToAsync(memoryStream);
                     var contenido = memoryStream.ToArray();
                     var extension = Path.GetExtension(actorCreacionDTO.Foto.FileName);
-                    actorBD.Foto = await almacenadorArchivos.GurdarArchivo(contenido,extension,contenedor,actorCreacionDTO.Foto.ContentType);
+                    actorBD.Foto = await almacenadorArchivos.GuardarArchivo(contenido,extension,contenedor,actorCreacionDTO.Foto.ContentType);
                 }
             }
             context.Add(actorBD);

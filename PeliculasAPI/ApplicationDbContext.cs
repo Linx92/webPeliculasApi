@@ -46,8 +46,9 @@ namespace PeliculasAPI
             {
                 Id=usuarioAdminId,
                 UserName=userName,
-                NormalizedEmail=userName,
+                NormalizedUserName=userName,               
                 Email=userName,
+                NormalizedEmail=userName,
                 PasswordHash=passwordHasher.HashPassword(null,"Zate1419!")
             };
             //modelBuilder.Entity<IdentityUser>().HasData(usuarioAdmin);
@@ -165,5 +166,6 @@ namespace PeliculasAPI
         public DbSet<PeliculasActores> PeliculasActores { get; set; }
         public DbSet<SalaDeCine> SalasDeCine { get; set; }
         public DbSet<PeliculasSalasDeCine> PeliculasSalasDeCine { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }

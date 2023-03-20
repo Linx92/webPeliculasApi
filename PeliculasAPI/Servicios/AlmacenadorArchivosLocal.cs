@@ -29,10 +29,10 @@
         public async Task<string> EditarArchivo(byte[] contenido, string extension, string contenedor, string ruta, string contentType)
         {
             await BorrarArchivo(ruta, contenedor);
-            return await GurdarArchivo(contenido, extension, contenedor, contentType);
+            return await GuardarArchivo(contenido, extension, contenedor, contentType);
         }
 
-        public async Task<string> GurdarArchivo(byte[] contenido, string extension, string contenedor, string contentType)
+        public async Task<string> GuardarArchivo(byte[] contenido, string extension, string contenedor, string contentType)
         {
             var nombreArchivo = $"{Guid.NewGuid()}{extension}";
             string folder = Path.Combine(env.WebRootPath, contenedor);

@@ -32,7 +32,7 @@ namespace PeliculasAPI.Controllers
             return await Get<SalaDeCine, SalaDeCineDTO>(id);
         }
         [HttpGet("cercanos")]
-        public async Task<ActionResult<List<SalaDeCineCercanoDTO>>> Get([FromQuery] SalaDeCineCercanoFiltroDTO filtroDTO)
+        public async Task<ActionResult<List<SalaDeCineCercanoDTO>>> Cercanos([FromQuery] SalaDeCineCercanoFiltroDTO filtroDTO)
         {
             var ubicacionUsuario = geometryFactory.CreatePoint(new Coordinate(filtroDTO.Longitud, filtroDTO.Latitud));
             var salasDeCine = await context.SalasDeCine

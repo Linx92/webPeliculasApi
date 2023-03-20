@@ -13,7 +13,7 @@ using PeliculasAPI;
 namespace PeliculasAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230304163414_AdminData")]
+    [Migration("20230307155046_AdminData")]
     partial class AdminData
     {
         /// <inheritdoc />

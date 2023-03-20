@@ -19,8 +19,9 @@ namespace PeliculasAPI.Controllers
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         private readonly string contenedor = "peliculas";
 
-        public PeliculasController(ApplicationDbContext context, ILogger<PeliculasController> logger,
-            IMapper mapper, IAlmacenadorArchivos almacenadorArchivos) :base(context,mapper)
+        public PeliculasController(ApplicationDbContext context,
+            IMapper mapper, IAlmacenadorArchivos almacenadorArchivos, 
+            ILogger<PeliculasController> logger) :base(context,mapper)
         {
             this.context = context;
             this.logger = logger;
@@ -45,7 +46,7 @@ namespace PeliculasAPI.Controllers
                 .ToListAsync();
             var resultado = new PeliculasIndexDTO();
             resultado.FuturosEstrenos = mapper.Map<List<PeliculaDTO>>(ProximosEstrenos);
-            resultado.EnCines = mapper.Map<List<PeliculaDTO>>(ProximosEstrenos);
+            resultado.EnCines = mapper.Map<List<PeliculaDTO>>(EnCines);
             return resultado;
         }
 
@@ -116,7 +117,7 @@ namespace PeliculasAPI.Controllers
                     await peliculaCreacionDTO.Poster.CopyToAsync(memoryStream);
                     var contenido = memoryStream.ToArray();
                     var extension = Path.GetExtension(peliculaCreacionDTO.Poster.FileName);
-                    peliculaDB.Poster = await almacenadorArchivos.GurdarArchivo(contenido, extension, contenedor, peliculaCreacionDTO.Poster.ContentType);
+                    peliculaDB.Poster = await almacenadorArchivos.GuardarArchivo(contenido, extension, contenedor, peliculaCreacionDTO.Poster.ContentType);
                 }
             }
             AsignarOrdenActores(peliculaDB);

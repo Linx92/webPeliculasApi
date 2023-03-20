@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PeliculasAPI.DTOs;
@@ -23,7 +25,7 @@ namespace PeliculasAPI.Controllers
         {
             return await Get<Genero,GeneroDTO>();
         }
-        [HttpGet("id:int", Name ="obtenerGenero")]
+        [HttpGet("{id:int}", Name ="obtenerGenero")]
         public async Task<ActionResult<GeneroDTO>> Get(int id)
         {
             return await Get<Genero, GeneroDTO>(id);
@@ -34,13 +36,14 @@ namespace PeliculasAPI.Controllers
         {
             return await Post<GeneroCreacionDTO, Genero, GeneroDTO>(generoCreacionDTO, "obtenerGenero");
         }
-        [HttpPut("id:int")]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult> Put(int id, [FromBody] GeneroCreacionDTO generoCreacionDTO)
         {
 
             return await Put<GeneroCreacionDTO, Genero>(id, generoCreacionDTO);
         }
-        [HttpDelete("id:int")]
+        [HttpDelete("{id:int}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult> Delete(int id) 
         {
            return await Delete<Genero>(id);

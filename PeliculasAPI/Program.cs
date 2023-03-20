@@ -34,6 +34,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosAzure>();
+builder.Services.AddScoped<PeliculaExisteAttribute>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<GeometryFactory>(NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326));
 
@@ -59,3 +60,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+public partial class Program { }
